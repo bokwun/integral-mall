@@ -1,0 +1,15 @@
+{
+    "mode": "debug",
+    "port": ":9001",
+    "Mysql": {
+		"DataSource": "root:123456@tcp(192.168.199.178:3306)/user?charset=utf8",
+		"Table": {
+			"User": "user"
+		}
+	},
+	"Redis": {
+		"DataSource": "192.168.199.178:6379",
+		"Auth": "123456"
+	},
+	"RabittMq": "amqp://admin:123456@192.168.199.178:5672/"
+}
