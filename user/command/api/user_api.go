@@ -58,13 +58,14 @@ func main() {
 		Password: conf.Redis.Auth,
 	})
 	userModel := model.NewUserModel(engine, client, conf.Mysql.Table.User)
-	userLogic := logic.NewUserLogic(userModel)
+	userLogic := logic.NewUserLogic(userModel, client)
 	userController := controller.NewUserController(userLogic)
 
 	r := gin.Default()
 	userRouterGroup := r.Group("/user")
 	{
 		userRouterGroup.POST("/register", userController.Register)
+		userRouterGroup.POST("/login", userController.Login)
 	}
 
 	log4g.Error(r.Run(conf.Port))

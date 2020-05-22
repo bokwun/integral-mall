@@ -1,6 +1,6 @@
 {
     "mode": "debug",
-    "port": ":9001",
+    "port": ":9010",
     "Mysql": {
 		"DataSource": "root:123456@tcp(localhost:3306)/user?charset=utf8",
 		"Table": {
@@ -11,5 +11,13 @@
 		"DataSource": "localhost:6379",
 		"Auth": ""
 	},
-	"RabittMq": "amqp://admin:123456@localhost:5672/"
+	"RpcServerConfig": {
+		"Schema": "myself",
+		"ServerName": "user-rpc",
+		"ServerAddress": ":9090",
+		"Endpoints": [
+			"192.168.1.4:2379",
+			"192.168.1.5:2379"
+		]
+	}
 }

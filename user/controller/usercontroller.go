@@ -1,7 +1,9 @@
 package controller
 
+//控制层处理请求操作后台
 import (
-	"fmt"
+	"integral-mall/common/baseresponse"
+	"integral-mall/common/i18n"
 	"integral-mall/user/logic"
 	"net/http"
 
@@ -24,22 +26,22 @@ func NewUserController(userLogic *logic.UserLogic) *UserController {
 func (c *UserController) Register(ctx *gin.Context) {
 	r := new(logic.RegisterRequest)
 	if err := ctx.ShouldBindJSON(r); err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{
-			"message": err,
-		})
+		ctx.JSON(http.StatusBadRequest, gin.H{"message": i18n.ErrBind})
 		ctx.Abort()
 		return
 	}
-	fmt.Println(r)
 	res, err := c.userLogic.Register(r)
-	if err != nil {
-		ctx.JSON(http.StatusBadRequest, gin.H{
-			"message": err,
-		})
+	baseresponse.HttpResponse(ctx, res, err)
+}
+
+//login
+func (c *UserController) Login(ctx *gin.Context) {
+	r := new(logic.LoginRequest)
+	if err := ctx.ShouldBindJSON(r); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"message": i18n.ErrBind})
 		ctx.Abort()
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"data": res,
-	})
+	res, err := c.userLogic.Login(r)
+	baseresponse.HttpResponse(ctx, res, err)
 }
