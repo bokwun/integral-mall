@@ -13,5 +13,8 @@ type Config struct {
 		DataSource string
 		Auth       string
 	}
-	RabbitMq string
+	RabbitMq struct {
+		DataSource  string
+		VirtualHost string
+	}
 }

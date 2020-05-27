@@ -1,0 +1,28 @@
+{
+    "mode": "debug",
+    "port": ":9005",
+    "Mysql": {
+		"DataSource": "root:123456@tcp(localhost:3306)/integral?charset=utf8",
+		"Table": {
+			"Integral": "integral"
+		}
+	},
+	"Redis": {
+		"DataSource": "localhost:6379",
+		"Auth": ""
+	},
+	"RpcServerConfig": {
+		"Schema": "myself",
+		"ServerName": "integral-rpc",
+		"ServerAddress": ":9095",
+		"Endpoints": [
+			"192.168.1.4:2379",
+			"192.168.1.5:2379"
+		]
+	},
+	"RabbitMq": {
+		"DataSource" : "amqp://admin:123456@localhost:5672/",
+		"VirtualHost" : "",
+		"QueueName"	: "integral"
+	}
+}

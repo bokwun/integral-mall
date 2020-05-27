@@ -13,6 +13,7 @@ require (
 	github.com/kr/pretty v0.2.0 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4 // indirect
+	github.com/streadway/amqp v0.0.0-20200108173154-1c71cc93ed71
 	github.com/ugorji/go v1.1.7 // indirect
 	github.com/yakaa/grpcx v1.1.2
 	github.com/yakaa/log4g v1.1.8

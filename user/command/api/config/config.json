@@ -11,5 +11,8 @@
 		"DataSource": "localhost:6379",
 		"Auth": ""
 	},
-	"RabittMq": "amqp://admin:123456@localhost:5672/"
+	"RabittMq": {
+		"DataSource" : "amqp://admin:123456@localhost:5672/",
+		"VirtualHost" : ""
+	}
 }
