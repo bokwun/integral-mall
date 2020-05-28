@@ -137,3 +137,16 @@ func (l *IntegralLogic) ConsumerIntegral(_ context.Context, r *protos.ConsumerIn
 		Integral: r.ConsumerIntegral,
 	}, nil
 }
+
+func (l *IntegralLogic) FindOneByUserId(_ context.Context, r *protos.FindOneByUserIdRequest) (*protos.IntegralResponse, error) {
+	// l.PushMessage(l.integralModel.UpdateIntegralByUserIdSql(int(r.UserId), int(r.ConsumerIntegral)))
+	// 通过userId 查找 积分
+	one, err := l.integralModel.FindByUserId(int(r.UserId))
+	if err != nil {
+		return nil, err
+	}
+	return &protos.IntegralResponse{
+		UserId:   r.UserId,
+		Integral: int64(one.Integral),
+	}, nil
+}

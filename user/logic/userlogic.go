@@ -61,7 +61,7 @@ func (l *UserLogic) Register(r *RegisterRequest) (*RegisterResponse, error) {
 			Password: fmt.Sprintf("%x", md5.Sum([]byte(r.Password))),
 		},
 		func(userId int64) error {
-			if err := l.integralRpcModel.AddIntegral(int(userId), 10); err != nil {
+			if err := l.integralRpcModel.AddIntegral(int(userId), 1000); err != nil {
 				return err
 			}
 			return nil
