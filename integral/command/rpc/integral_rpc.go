@@ -74,7 +74,7 @@ func main() {
 		log.Fatal(err)
 	}
 	userServerLogic.ConsumeMessage()
-	userServerLogic.PushMessage("INSERT INTO `integral` (user_id, integral) VALUES(22,90)")
+	// userServerLogic.PushMessage("INSERT INTO `integral` (user_id, integral) VALUES(22,90)")
 	defer userServerLogic.CloseRabbitMqConn()
 	rpcServer, err := grpcx.MustNewGrpcxServer(conf.RpcServerConfig, func(server *grpc.Server) {
 		protos.RegisterIntegralRpcServer(server, userServerLogic)
