@@ -10,7 +10,6 @@ import (
 	"strconv"
 
 	"github.com/go-redis/redis"
-	"github.com/yakaa/log4g"
 )
 
 type (
@@ -56,15 +55,20 @@ func (l *UserLogic) Register(r *RegisterRequest) (*RegisterResponse, error) {
 	if b {
 		return nil, ErrRecordExist
 	}
-	userId, err := l.userModel.Insert(&model.User{
-		Mobile:   r.Mobile,
-		Password: fmt.Sprintf("%x", md5.Sum([]byte(r.Password))),
-	})
+	_, err = l.userModel.TransactionInsert(
+		&model.User{
+			Mobile:   r.Mobile,
+			Password: fmt.Sprintf("%x", md5.Sum([]byte(r.Password))),
+		},
+		func(userId int64) error {
+			if err := l.integralRpcModel.AddIntegral(int(userId), 1000); err != nil {
+				return err
+			}
+			return nil
+		},
+	)
 	if err != nil {
 		return nil, err
-	}
-	if err := l.integralRpcModel.AddIntegral(int(userId), 1000); err != nil {
-		log4g.ErrorFormat("AddIntegral err %+v", err)
 	}
 	return response, nil
 }

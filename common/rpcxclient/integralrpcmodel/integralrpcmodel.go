@@ -5,6 +5,7 @@ import (
 	"integral-mall/integral/protos"
 
 	"github.com/yakaa/grpcx"
+	"github.com/yakaa/grpcx/config"
 )
 
 type (
@@ -25,10 +26,13 @@ func (m *IntegralRpcModel) AddIntegral(userId, integral int) error {
 		return err
 	}
 	clientIntegral := protos.NewIntegralRpcClient(conn)
-	if _, err := clientIntegral.AddIntegral(context.Background(), &protos.AddIntegralRequest{
-		UserId:   int64(userId),
-		Integral: int64(integral),
-	}); err != nil {
+	ctx, cancelFunc := context.WithTimeout(context.Background(), config.GrpcxDialTimeout)
+	defer cancelFunc()
+	if _, err := clientIntegral.AddIntegral(
+		ctx,
+		&protos.AddIntegralRequest{
+			UserId:   int64(userId),
+			Integral: int64(integral)}); err != nil {
 		return err
 	}
 	return nil
@@ -40,10 +44,13 @@ func (m *IntegralRpcModel) ConsumerIntegral(userId, consumerIntegral int) error 
 		return err
 	}
 	clientIntegral := protos.NewIntegralRpcClient(conn)
-	if _, err := clientIntegral.ConsumerIntegral(context.Background(), &protos.ConsumerIntegralRequest{
-		UserId:           int64(userId),
-		ConsumerIntegral: int64(consumerIntegral),
-	}); err != nil {
+	ctx, cancelFunc := context.WithTimeout(context.Background(), config.GrpcxDialTimeout)
+	defer cancelFunc()
+	if _, err := clientIntegral.ConsumerIntegral(
+		ctx,
+		&protos.ConsumerIntegralRequest{
+			UserId:           int64(userId),
+			ConsumerIntegral: int64(consumerIntegral)}); err != nil {
 		return err
 	}
 	return nil
