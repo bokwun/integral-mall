@@ -79,7 +79,7 @@ func (l *IntegralLogic) PushMessage(message string) {
 func (l *IntegralLogic) ConsumeMessage() {
 	q, err := l.QueueDeclare(l.channel)
 	if err != nil {
-		log4g.ErrorFormat("PushMessage err %+v", err)
+		log4g.ErrorFormat("ConsumeMessage err %+v", err)
 		return
 	}
 	messageList, err := l.channel.Consume(

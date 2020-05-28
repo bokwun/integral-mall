@@ -64,7 +64,7 @@ func (m *IntegralModel) FindById(id int64) (*Integral, error) {
 }
 
 func (m *IntegralModel) InsertIntegralSql(userId, integral int) string {
-	return fmt.Sprintf("INSERT INTO "+m.table+"(`user_Id, integral`) VALUE (%d,%d)", userId, integral)
+	return fmt.Sprintf("INSERT INTO "+m.table+"(user_Id, integral) VALUES (%d,%d)", userId, integral)
 }
 
 func (m *IntegralModel) UpdateIntegralByUserIdSql(userId, integral int) string {
