@@ -1,3 +1,0 @@
-[INFO] 2020-05-27 16:07:44.004 Consume message INSERT INTO `integral` (user_id, integral) VALUES(22,90) [SUCESS]
-[INFO] 2020-05-27 16:07:54.529 serverAddress [:9095] of integral-rpc Rpc server has started and full key [myself/integral-rpc/bb77ef52-9999-474d-89e7-6e10f2c0808a]
-[INFO] 2020-05-27 16:09:51.128 serverAddress [:9095] of integral-rpc Rpc server has existed with got signal [interrupt] and full key [myself/integral-rpc/bb77ef52-9999-474d-89e7-6e10f2c0808a]
