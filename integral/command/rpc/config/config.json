@@ -1,6 +1,5 @@
 {
     "mode": "debug",
-    "port": ":9005",
     "Mysql": {
 		"DataSource": "root:123456@tcp(localhost:3306)/integral?charset=utf8",
 		"Table": {
